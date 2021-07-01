@@ -1,7 +1,8 @@
 package com.example.jjmessageservice.connection;
 
-import austral.ingsis.jjpostservice.dto.UserDto;
-import austral.ingsis.jjpostservice.exception.AuthenticationException;
+
+import com.example.jjmessageservice.dto.UserDto;
+import com.example.jjmessageservice.exception.AuthenticationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

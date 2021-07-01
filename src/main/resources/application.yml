@@ -1,0 +1,17 @@
+server:
+  port : 3000
+
+spring:
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5436/jibberjabberdb_messages
+    username: jibberjabber
+    password: jibberjabber
+    initialization-mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update

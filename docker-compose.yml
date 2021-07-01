@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  #  api:
+  #    container_name: "compose-api"
+  #    build:
+  #      context: .
+  #      dockerfile: Dockerfile.multi
+  #    ports:
+  #      - 8080:8080
+  #    environment:
+  #      DB_USER: jibberjabber
+  #      DB_PASSWORD: jibberjabber
+  #      DB_NAME: jibberjabberdb
+  #      DB_HOST: postgres_db
+  #      DB_PORT: 5432
+  #    depends_on:
+  #      - db
+
+  db:
+    container_name: postgres_db_messages
+    image: postgres:12
+    ports:
+      - 5436:5432
+    environment:
+      POSTGRES_USER: jibberjabber
+      POSTGRES_PASSWORD: jibberjabber
+      POSTGRES_DB: jibberjabberdb_messages
+    volumes:
+      - msgData:/var/lib/postgresql/data
+
+volumes:
+  msgData:
+    external: true
