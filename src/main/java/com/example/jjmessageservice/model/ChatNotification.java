@@ -1,4 +1,4 @@
-package com.example.jjmessageservice.persistance.model;
+package com.example.jjmessageservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,29 +7,22 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
-public class ChatMessageDao {
-    @Id
+public class ChatNotification {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
+    private String content;
+    private String senderId;
+    private String senderName;
+    private String chatId;
+    private Long unreadCount;
 
-    @Column(name = "from")
-    private String from;
-
-    @Column(name = "to")
-    private String to;
-
-    @Column(name = "message")
-    private String message;
 
 }
