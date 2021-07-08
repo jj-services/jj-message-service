@@ -1,6 +1,7 @@
 package com.example.jjmessageservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.DefaultContentTypeResolver;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -13,14 +14,19 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 import java.util.List;
 
+import static java.util.Collections.singletonList;
+
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    @Value("${app.origin}")
+    private String prodOrigin;
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker( "/user");
-        config.setApplicationDestinationPrefixes("/app");
+        config.setApplicationDestinationPrefixes("/api");
         config.setUserDestinationPrefix("/user");
     }
 
@@ -28,7 +34,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry
                 .addEndpoint("/ws")
-                .setAllowedOrigins("*")
+                .setAllowedOriginPatterns(prodOrigin)
                 .withSockJS();
     }
 
