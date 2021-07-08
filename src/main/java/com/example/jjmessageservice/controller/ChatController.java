@@ -32,6 +32,8 @@ public class ChatController {
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {
+        System.out.println(chatMessage);
+
         Optional<String> chatId = chatRoomService
                 .getChatId(chatMessage, true);
         chatMessage.setChatId(chatId.get());
