@@ -37,7 +37,6 @@ public class ChatController {
         Optional<String> chatId = chatRoomService
                 .getChatId(chatMessage, true);
         chatMessage.setChatId(chatId.get());
-        System.out.println("carajooo");
         ChatMessage saved = chatMessageService.save(chatMessage);
         messagingTemplate.convertAndSendToUser(
                 chatMessage.getRecipientId(),"/queue/messages",
