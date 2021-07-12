@@ -1,0 +1,68 @@
+#para el docker de infra dev
+jj-message:
+  container_name: jj-message
+  image: docker.pkg.github.com/tomasgp97/jj-message-service/dev-jj-message-service:latest
+  ports:
+    - 8083:8080
+  environment:
+    DB_USER: jibberjabber
+    DB_PASSWORD: jibberjabber
+    DB_NAME: jibberjabberdb_messages
+    DB_HOST: db-message
+    DB_PORT: 5432
+  depends_on:
+    - db-message
+
+
+  db-message:
+    container_name: db-message
+    image: postgres:12
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: jibberjabber
+      POSTGRES_PASSWORD: jibberjabber
+      POSTGRES_DB: jibberjabberdb_messages
+    volumes:
+      - msgData:/var/lib/postgresql/data
+
+volumes:
+  postData:
+  pgdata:
+  msgData:
+
+#para el docker de infra prod
+
+jj-message:
+  container_name: jj-message
+  image: docker.pkg.github.com/tomasgp97/jj-message-service/prod-jj-message-service:latest
+  ports:
+    - 8083:8080
+  environment:
+    DB_USER: jibberjabber
+    DB_PASSWORD: jibberjabber
+    DB_NAME: jibberjabberdb_messages
+    DB_HOST: db-message
+    DB_PORT: 5432
+  depends_on:
+    - db-message
+
+
+  db-message:
+    container_name: db-message
+    image: postgres:12
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: jibberjabber
+      POSTGRES_PASSWORD: jibberjabber
+      POSTGRES_DB: jibberjabberdb_messages
+    volumes:
+      - msgData:/var/lib/postgresql/data
+
+volumes:
+  postData:
+  pgdata:
+  msgData:
+
+
